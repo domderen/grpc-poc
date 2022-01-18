@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package echo;
+
+message EchoRequest {
+  string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+}
+
+message ValidationRequest {
+  string argument = 1;
+}
+
+message ValidationResponse {
+  enum ValidationType {
+    IS_QUESTION = 0;
+    HAS_IMPROPER_WORDS = 1;
+    IS_SPAM = 2;
+  }
+  ValidationType validationType = 1;
+  bool isValid = 2;
+  string errorMessage = 3;
+}
+
+service EchoService {
+  rpc Echo(EchoRequest) returns (EchoResponse);
+  rpc EchoError(EchoRequest) returns (EchoResponse);
+  rpc Validate(ValidationRequest) returns (stream ValidationResponse);
+}
