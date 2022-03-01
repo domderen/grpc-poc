@@ -1,8 +1,10 @@
-var PROTO_PATH = __dirname + '/../protos/echo.proto';
+const PROTO_PATH = __dirname + '/../protos/echo.proto';
 
-var grpc = require('@grpc/grpc-js');
-var protoLoader = require('@grpc/proto-loader');
-var packageDefinition = protoLoader.loadSync(
+const GRPC_HOST = process.env.GRPC_HOST || 'localhost:50051'
+
+const grpc = require('@grpc/grpc-js');
+const protoLoader = require('@grpc/proto-loader');
+const packageDefinition = protoLoader.loadSync(
   PROTO_PATH,
   {
     keepCase: true,
@@ -10,9 +12,13 @@ var packageDefinition = protoLoader.loadSync(
     enums: String,
     defaults: true,
     oneofs: true
-  });
-var echo = grpc.loadPackageDefinition(packageDefinition).echo;
-var client = new echo.EchoService('localhost:50051',
+  }
+);
+const echo = grpc.loadPackageDefinition(packageDefinition).echo;
+
+console.log('GRPC_HOST:', GRPC_HOST);
+
+const client = new echo.EchoService(GRPC_HOST,
   grpc.credentials.createInsecure());
 
 module.exports = client

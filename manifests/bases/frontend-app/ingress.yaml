@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-app
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: poc.opsy.site
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend-app
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix

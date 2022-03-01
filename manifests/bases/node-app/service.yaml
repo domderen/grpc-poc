@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: node-app
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: ws
+  selector:
+    app: node-app

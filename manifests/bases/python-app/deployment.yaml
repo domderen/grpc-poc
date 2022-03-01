@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+spec:
+  selector:
+    matchLabels:
+      app: python-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+        - name: python-app
+          image: containerrepoakstest.azurecr.io/python-app:SET_TAG_IN_OVERLAY
+          command: ["python"]
+          args: ["server.py"]
+          ports:
+            - containerPort: 50051
+              name: grpc
+              protocol: TCP
+          resources:
+            limits:
+              memory: 200Mi
+              cpu: "200m"
+            requests:
+              memory: 200Mi
+              cpu: "200m"
