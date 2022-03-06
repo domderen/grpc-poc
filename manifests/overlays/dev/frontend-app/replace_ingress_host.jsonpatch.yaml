@@ -1,0 +1,7 @@
+# JSON Patch to replace environment-specific host in the Ingress object.
+- op:    replace
+  path:  /spec/rules/0/host
+  value: poc-dev.opsy.site
+- op:    replace
+  path:  /spec/tls/0/hosts/0
+  value: poc-dev.opsy.site
