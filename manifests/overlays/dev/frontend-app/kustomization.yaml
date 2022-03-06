@@ -6,4 +6,12 @@ resources:
 
 images:
 - name: containerrepoakstest.azurecr.io/frontend-app
-  newTag: "2"
+  newTag: "4-dev"
+
+patchesJson6902:
+  - target:
+      group: networking.k8s.io
+      version: v1
+      kind: Ingress
+      name: frontend-app
+    path: replace_ingress_host.jsonpatch.yaml

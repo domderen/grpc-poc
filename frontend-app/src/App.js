@@ -10,7 +10,7 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    this.client = new WebSocket('ws://poc.opsy.site/api/v1/ws');
+    this.client = new WebSocket(`wss://poc-${process.env.REACT_APP_ENV}.opsy.site/api/v1/ws`);
 
     this.client.onopen = () => {
       console.log('WebSocket Client Connected');

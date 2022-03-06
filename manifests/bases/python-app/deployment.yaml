@@ -13,6 +13,12 @@ spec:
       labels:
         app: python-app
     spec:
+      nodeSelector:
+        kubernetes.azure.com/mode: user
+      tolerations:
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Exists"
+        effect: "NoSchedule"
       containers:
         - name: python-app
           image: containerrepoakstest.azurecr.io/python-app:SET_TAG_IN_OVERLAY

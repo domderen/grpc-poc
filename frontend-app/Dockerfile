@@ -1,5 +1,7 @@
 FROM node:current-alpine
 
+ARG REACT_APP_ENV=dev
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
@@ -9,4 +11,4 @@ RUN npm install
 
 COPY . /usr/src/app/
 
-RUN npm run build
+RUN REACT_APP_ENV=$REACT_APP_ENV npm run build

@@ -1,5 +1,18 @@
 # Getting Started with Create React App
 
+## Building docker version
+
+Build docker image for specific environment:
+
+```bash
+REACT_APP_ENV='dev' # dev or prod
+VERSION_NUMBER='1'
+
+docker buildx build -f Dockerfile --build-arg REACT_APP_ENV=${REACT_APP_ENV}  -t containerrepoakstest.azurecr.io/frontend-app:${VERSION_NUMBER}-${REACT_APP_ENV} --progress plain .
+```
+
+## Standard React-Create-App readme
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
