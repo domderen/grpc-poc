@@ -9,6 +9,8 @@ REACT_APP_ENV='dev' # dev or prod
 VERSION_NUMBER='1'
 
 docker buildx build -f Dockerfile --build-arg REACT_APP_ENV=${REACT_APP_ENV}  -t containerrepoakstest.azurecr.io/frontend-app:${VERSION_NUMBER}-${REACT_APP_ENV} --progress plain .
+
+docker push containerrepoakstest.azurecr.io/frontend-app:${VERSION_NUMBER}-${REACT_APP_ENV}
 ```
 
 ## Standard React-Create-App readme
