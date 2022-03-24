@@ -70,6 +70,7 @@ kubectl apply -f manifests/ClusterIssuer.yaml
 Useful links:
 
 - <https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#use-azure-kubernetes-service-cluster>
+- https://docs.microsoft.com/en-us/azure/aks/devops-pipeline?view=azure-devops&pivots=pipelines-yaml
 
 First, modify contents of the `./pipelines/kustomization.yaml` with values from your Azure DevOps orgnization. Next run following to create a new  Azure DevOps Pipeline Deployment in AKS:
 
