@@ -64,3 +64,19 @@ More info on [ClusterIssues](https://cert-manager.io/docs/configuration/acme/)
 ```bash
 kubectl apply -f manifests/ClusterIssuer.yaml
 ```
+
+## Building Azure DevOps Pipeline AgentPool in AKS cluster
+
+Useful links:
+
+- <https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#use-azure-kubernetes-service-cluster>
+
+First, modify contents of the `./pipelines/kustomization.yaml` with values from your Azure DevOps orgnization. Next run following to create a new  Azure DevOps Pipeline Deployment in AKS:
+
+```bash
+# Build docker image with the Azure DevOps Pipelines Agent
+docker buildx build -f ./pipelines/Dockerfile -t containerrepoakstest.azurecr.io/azdevops:1 --push --progress plain ./pipelines
+
+# Apply kubernetes namespace & deployment.
+kubectl apply -k ./pipelines
+```

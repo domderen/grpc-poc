@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- namespace.yaml
+
+namespace: azdevops
+
+generatorOptions:
+ disableNameSuffixHash: true
+
+secretGenerator:
+- name: azdevops
+  literals:
+  - AZP_URL=https://dev.azure.com/<your-org-name>
+  - AZP_TOKEN=<your-personal-access-token>
+  - AZP_POOL=<your-pool-name>
